@@ -1,5 +1,5 @@
 # hellodocker
-Dumb little test project creating a Nancy hello world that can run in a .net core docker container
+Dumb little test project creating a Nancy hello world that can run in a .net core docker container.
 
 ## Build and run in docker
 `docker build -t hellodocker` <br>
