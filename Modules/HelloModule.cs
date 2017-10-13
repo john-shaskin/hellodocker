@@ -13,7 +13,7 @@ namespace hellodocker.Modules
         private string GetHello()
         {
             Console.WriteLine("/hello");
-            return "Hello";
+            return "Hello, it's me!";
         }
     }
 }
