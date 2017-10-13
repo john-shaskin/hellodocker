@@ -20,7 +20,7 @@ namespace hellodocker.Modules
         private string GetGoodbye()
         {
             Console.WriteLine("Request to /goodbye");
-            return "Good-bye!";
+            return "Good-bye, you!";
         }
     }
 }
