@@ -9,4 +9,3 @@ Dumb little test project creating a Nancy hello world that can run in a .net cor
 Go to http://localhost:5000/hello
 
 Change from feature/thing-a
-Additional change after the revert
