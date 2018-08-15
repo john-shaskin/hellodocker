@@ -27,7 +27,7 @@ namespace hellodocker.Modules
         private string GetGoAway()
         {
             Console.WriteLine("Request to /goaway");
-            return "Go away!!";
+            return "Go away!! Seriously!";
         }
     }
 }
