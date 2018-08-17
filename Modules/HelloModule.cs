@@ -21,7 +21,7 @@ namespace hellodocker.Modules
         private string GetGoodbye()
         {
             Console.WriteLine("Request to /goodbye");
-            return "Good-bye, you!";
+            return "Good-bye, you! It's been swell!";
         }
 
         private string GetGoAway()
