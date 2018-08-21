@@ -11,7 +11,7 @@ phases:
       - unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
       - rm /tmp/GitVersion_3.6.5.zip
       - ls /usr/lib/x86_64-linux-gnu
-      - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.24" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
+      - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.0" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
