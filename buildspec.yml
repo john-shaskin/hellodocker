@@ -1,6 +1,14 @@
 version: 0.2
 
 phases:
+  setup:
+    commands:
+      - echo Installing GitVersion...
+      - sudo yum install -y mono-complete
+      - sudo yum install -y ~/binaries/libgit2-0.24.6-2.el7.x86_64.rpm
+      - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
+      - sudo unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
+      - rm /tmp/GitVersion_3.6.5.zip
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
@@ -9,6 +17,8 @@ phases:
       - REPOSITORY_URI=964705782699.dkr.ecr.us-west-2.amazonaws.com/jshaskin/hellodocker
       - COMMIT_HASH=$(echo $CODE_BUILD_RESOLVE_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - SEMANTIC_VERSION=$(echo $(mono /opt/GitVersion/GitVersion.exe /showvariable SemVer))
+      - echo Semantic version is $SEMANTIC_VERSION
   build:
     commands:
       - echo Build started on `date`
