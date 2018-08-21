@@ -10,7 +10,8 @@ phases:
       - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
       - unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
       - rm /tmp/GitVersion_3.6.5.zip
-      - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.26" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
+      - ls /usr/lib/x86_64-linux-gnu
+      - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.24" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
