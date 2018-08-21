@@ -4,8 +4,9 @@ phases:
   install:
     commands:
       - echo Installing GitVersion...
-      - yum install -y mono-complete
-      - yum install -y ~/binaries/libgit2-0.24.6-2.el7.x86_64.rpm
+      - apt-get update -y
+      - apt-get install -y mono-complete
+      - apt-get install -y ~/binaries/libgit2-0.24.6-2.el7.x86_64.rpm
       - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
       - unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
       - rm /tmp/GitVersion_3.6.5.zip
