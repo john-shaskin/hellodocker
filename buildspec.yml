@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-  setup:
+  pre_build:
     commands:
       - echo Installing GitVersion...
       - sudo yum install -y mono-complete
@@ -9,8 +9,6 @@ phases:
       - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
       - sudo unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
       - rm /tmp/GitVersion_3.6.5.zip
-  pre_build:
-    commands:
       - echo Logging into Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region us-west-2 --no-include-email)
