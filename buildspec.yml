@@ -1,16 +1,6 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo Installing GitVersion...
-      - apt-get update -y
-      - apt-get install -y mono-complete
-      - apt-get install -y libgit2-dev
-      - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
-      - unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
-      - rm /tmp/GitVersion_3.6.5.zip
-      - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.0" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
@@ -18,12 +8,15 @@ phases:
       - $(aws ecr get-login --region us-west-2 --no-include-email)
       - REPOSITORY_URI=964705782699.dkr.ecr.us-west-2.amazonaws.com/jshaskin/hellodocker
       - COMMIT_HASH=$(echo $CODE_BUILD_RESOLVE_SOURCE_VERSION | cut -c 1-7)
+      - SEMANTIC_VERSION=$(echo $(gitversion /showvariable SemVer))
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - SEMANTIC_VERSION=$(echo $(mono /usr/local/GitVersion_${GITVERSION_VERSION}/GitVersion.exe /showvariable SemVer))
       - echo Semantic version is $SEMANTIC_VERSION
   build:
     commands:
       - echo Build started on `date`
+      - SEMANTIC_VERSION=$(echo $(gitversion /showvariable SemVer))
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo Semantic version is $SEMANTIC_VERSION
       - echo Building the Docker image version ${IMAGE_TAG}...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
