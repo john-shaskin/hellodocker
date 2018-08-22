@@ -3,6 +3,10 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Environment
+      - env
+      - echo Files
+      - ls -lah
       - echo Logging into Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region us-west-2 --no-include-email)
