@@ -11,7 +11,7 @@ phases:
       - aws --version
       - $(aws ecr get-login --region us-west-2 --no-include-email)
       - REPOSITORY_URI=964705782699.dkr.ecr.us-west-2.amazonaws.com/jshaskin/hellodocker
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVE_SOURCE_VERSION | cut -c 1-7)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - echo Semantic version is $SEMANTIC_VERSION
   build:
