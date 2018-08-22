@@ -10,7 +10,6 @@ phases:
       - curl -L -o /tmp/GitVersion_3.6.5.zip https://github.com/GitTools/GitVersion/releases/download/v3.6.5/GitVersion_3.6.5.zip
       - unzip -o -d /opt/GitVersion /tmp/GitVersion_3.6.5.zip
       - rm /tmp/GitVersion_3.6.5.zip
-      - ls /usr/lib/x86_64-linux-gnu
       - echo '<configuration><dllmap os="linux" cpu="x86-64" wordsize="64" dll="git2-baa87df" target="/usr/lib/x86_64-linux-gnu/libgit2.so.0" /></configuration>' > /opt/GitVersion/LibGit2Sharp.dll.config
   pre_build:
     commands:
@@ -20,7 +19,7 @@ phases:
       - REPOSITORY_URI=964705782699.dkr.ecr.us-west-2.amazonaws.com/jshaskin/hellodocker
       - COMMIT_HASH=$(echo $CODE_BUILD_RESOLVE_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - SEMANTIC_VERSION=$(echo $(mono /opt/GitVersion/GitVersion.exe /showvariable SemVer))
+      - SEMANTIC_VERSION=$(echo $(mono /usr/local/GitVersion_${GITVERSION_VERSION}/GitVersion.exe /showvariable SemVer))
       - echo Semantic version is $SEMANTIC_VERSION
   build:
     commands:
