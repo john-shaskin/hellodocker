@@ -8,4 +8,3 @@ Dumb little test project creating a Nancy hello world that can run in a .net cor
 ## Test
 Go to http://localhost:5000/hello
 
-Hey, it's me!
