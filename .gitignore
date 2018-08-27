@@ -1,6 +1,7 @@
 ﻿**/bin/
 **/obj/
 .vs/
+.vscode/
 *.user
 
 # feature/thing-b ignore
