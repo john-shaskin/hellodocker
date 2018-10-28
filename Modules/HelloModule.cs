@@ -9,6 +9,7 @@ namespace hellodocker.Modules
         {
             Get("/hello", args => GetHello());
             Get("/goodbye", args => GetGoodbye());
+            Get("/goaway", args => GetGoAway());
         }
 
         private string GetHello()
@@ -20,7 +21,13 @@ namespace hellodocker.Modules
         private string GetGoodbye()
         {
             Console.WriteLine("Request to /goodbye");
-            return "Good-bye, you!";
+            return "Good-bye, you! It's been swell!";
+        }
+
+        private string GetGoAway()
+        {
+            Console.WriteLine("Request to /goaway");
+            return "Go away!! Seriously!";
         }
     }
 }
